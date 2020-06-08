@@ -7,7 +7,86 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+	<Page.Resources>
+		<Style TargetType="HyperlinkButton"
+			   x:Key="DefaultHyperlinkButtonStyle">
+			<Setter Property="Padding"
+					Value="0,6,0,6" />
+			<Setter Property="HorizontalAlignment"
+					Value="Left" />
+			<Setter Property="VerticalAlignment"
+					Value="Center" />
+			<Setter Property="UseSystemFocusVisuals"
+					Value="True" />
+
+			<!-- Typo08 -->
+			<Setter Property="Foreground"
+					Value="Black" />
+			<Setter Property="FontSize"
+					Value="14" />
+			<Setter Property="FontWeight"
+					Value="Normal" />
+
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="HyperlinkButton">
+						<Grid x:Name="RootGrid">
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup x:Name="CommonStates">
+									<VisualState x:Name="Normal" />
+									<VisualState x:Name="PointerOver">
+										<Storyboard>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+																		   Storyboard.TargetProperty="Opacity">
+												<DiscreteObjectKeyFrame KeyTime="0"
+																		Value="0.5" />
+											</ObjectAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="Pressed">
+										<Storyboard>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+																		   Storyboard.TargetProperty="Opacity">
+												<DiscreteObjectKeyFrame KeyTime="0"
+																		Value="0.5" />
+											</ObjectAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="Disabled">
+										<Storyboard>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+																		   Storyboard.TargetProperty="Opacity">
+												<DiscreteObjectKeyFrame KeyTime="0"
+																		Value="0.5" />
+											</ObjectAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
+
+							<ContentPresenter x:Name="ContentPresenter"
+											  Background="{TemplateBinding Background}"
+											  BorderBrush="{TemplateBinding BorderBrush}"
+											  BorderThickness="{TemplateBinding BorderThickness}"
+											  Content="{TemplateBinding Content}"
+											  ContentTransitions="{TemplateBinding ContentTransitions}"
+											  ContentTemplate="{TemplateBinding ContentTemplate}"
+											  Padding="{TemplateBinding Padding}"
+											  MinHeight="{TemplateBinding MinHeight}"
+											  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+											  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+											  AutomationProperties.AccessibilityView="Raw" />
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</Page.Resources>
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<TextBlock Text="Hello, world!" Margin="20" FontSize="30" />
-    </Grid>
+		<HyperlinkButton x:Name="btnHyperlink"
+						 Content="I accept the Terms and Conditions"
+						 Style="{StaticResource DefaultHyperlinkButtonStyle}"
+						 MinHeight="48" />
+	</Grid>
 </Page>
